@@ -1,13 +1,12 @@
-const request = require('supertest'),
+const // request = require('supertest'),
   session = require('supertest-session'),
   app = require('../../server'),
-  req = request(app),
+  // req = request(app),
   ses = session(app)
 
 describe('Address API Tests', () => {
-
   describe('GET /postcode', () => {
-    it('respond status 403 with user not logged ', (done) => {
+    it('respond status 403 with user not logged ', done => {
       ses
         .get('/postcode')
         .set('Accept', 'application/json')
@@ -17,7 +16,7 @@ describe('Address API Tests', () => {
   })
 
   describe('GET /address', () => {
-    it('respond status 403 with user not logged ', (done) => {
+    it('respond status 403 with user not logged ', done => {
       ses
         .get('/address')
         .set('Accept', 'application/json')
@@ -27,7 +26,7 @@ describe('Address API Tests', () => {
   })
 
   describe('POST /address', () => {
-    let data = 
+    let data =
             {
               number: '333',
               idPostcode: '5caa80252ad11c5860cf4b13',
@@ -48,7 +47,7 @@ describe('Address API Tests', () => {
   })
 
   describe('PUT /address', () => {
-    let data = 
+    let data =
             {
               number: '333',
               idPostcode: '5caa80252ad11c5860cf4b13'
@@ -66,24 +65,24 @@ describe('Address API Tests', () => {
         })
     })
   })
-  
+
   describe(`DELETE /address}`, () => {
-    it('respond status 403 with user not logged ', (done) => {
-        ses
+    it('respond status 403 with user not logged ', done => {
+      ses
         .delete(`/address`)
         .set('Accept', 'application/json')
         .expect(403)
-        .end((err,res) => {
-            if (err) return done(err);
-            done();
-        });
+        .end((err, res) => {
+          if (err) return done(err)
+          done()
+        })
     })
-})
+  })
 
   describe('POST /login', () => {
     let data =
         {
-          email: 'nigel@gmail.com',
+          email: 'monica@gmail.com',
           password: '222222'
         }
     it('Respond status 200 with login OK', done => {
@@ -101,29 +100,29 @@ describe('Address API Tests', () => {
   })
 
   describe('GET /postcode', () => {
-    it('respond status 200 with a list of postcodes ', (done) => {
+    it('respond status 200 with a list of postcodes ', done => {
       ses
         .get('/postcode')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200, done)
     })
-  })  
+  })
 
   describe('GET /address', () => {
-    it('respond status 404 with an address not found ', (done) => {
+    it('respond status 404 with an address not found ', done => {
       ses
         .get('/address')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(404, done)
     })
-  })  
+  })
 
   describe('POST /address', () => {
-    let data = 
+    let data =
             {
-              number: '5899',
+              number: '7800',
               idPostcode: '5caa80252ad11c5860cf4b13',
               expired: null
             }
@@ -142,19 +141,19 @@ describe('Address API Tests', () => {
   })
 
   describe('GET /address', () => {
-    it('respond status 200 with an address of user session ', (done) => {
+    it('respond status 200 with an address of user session ', done => {
       ses
         .get('/address')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200, done)
     })
-  })  
+  })
 
   describe('PUT /address', () => {
-    let data = 
+    let data =
             {
-              number: '5888',
+              number: '9000',
               idPostcode: '5caa80252ad11c5860cf4b13'
             }
     it('Respond status 201 with address updated.', done => {
@@ -172,20 +171,20 @@ describe('Address API Tests', () => {
   })
 
   describe(`DELETE /address}`, () => {
-    it('respond status 204 logical address delete', (done) => {
-        ses
+    it('respond status 204 logical address delete', done => {
+      ses
         .delete(`/address`)
         .set('Accept', 'application/json')
         .expect(204)
-        .end((err,res) => {
-            if (err) return done(err);
-            done();
-        });
+        .end((err, res) => {
+          if (err) return done(err)
+          done()
+        })
     })
-})
+  })
 
   describe('GET /logout', () => {
-    it('respond status 200 with user logged out ', (done) => {
+    it('respond status 200 with user logged out ', done => {
       ses
         .get('/logout')
         .set('Accept', 'application/json')
@@ -193,5 +192,4 @@ describe('Address API Tests', () => {
         .expect(200, done)
     })
   })
-
 })

@@ -4,8 +4,7 @@ const request = require('supertest'),
   req = request(app),
   ses = session(app)
 
-describe('User API Tests', () => { 
-
+describe('User API Tests', () => {
   describe('POST /user', () => {
     let data = {}
     it('Respond status 406 with an error expecting parameters', done => {
@@ -23,7 +22,7 @@ describe('User API Tests', () => {
   })
 
   describe('POST /user', () => {
-    let data = 
+    let data =
         {
           name: 'Mi',
           email: 'mike@gmail.com',
@@ -45,7 +44,7 @@ describe('User API Tests', () => {
   })
 
   describe('POST /user', () => {
-    let data = 
+    let data =
         {
           name: 'Mike',
           email: 'mike@com',
@@ -67,7 +66,7 @@ describe('User API Tests', () => {
   })
 
   describe('POST /user', () => {
-    let data = 
+    let data =
         {
           name: 'Mike',
           email: 'mike@service.com',
@@ -89,7 +88,7 @@ describe('User API Tests', () => {
   })
 
   describe('POST /user', () => {
-    let data = 
+    let data =
         {
           name: 'Mike',
           email: 'mike@service.com',
@@ -111,10 +110,10 @@ describe('User API Tests', () => {
   })
 
   describe('POST /user', () => {
-    let data = 
+    let data =
             {
-              name: 'Nigel',
-              email: 'nigel@gmail.com',
+              name: 'Monica',
+              email: 'monica@gmail.com',
               mobile: '07756988775',
               password: '222222'
             }
@@ -133,7 +132,7 @@ describe('User API Tests', () => {
   })
 
   describe('GET /user', () => {
-    it('respond status 403 with user not logged ', (done) => {
+    it('respond status 403 with user not logged ', done => {
       ses
         .get('/user')
         .set('Accept', 'application/json')
@@ -145,7 +144,7 @@ describe('User API Tests', () => {
   describe('POST /login', () => {
     let data =
         {
-          email: 'nigel@gmail.com',
+          email: 'monica@gmail.com',
           password: '222222'
         }
     it('Respond status 200 with login OK', done => {
@@ -161,9 +160,9 @@ describe('User API Tests', () => {
         })
     })
   })
-  
+
   describe('GET /user', () => {
-    it('respond status 200 with user logged ', (done) => {
+    it('respond status 200 with user logged ', done => {
       ses
         .get('/user')
         .set('Accept', 'application/json')
@@ -189,7 +188,7 @@ describe('User API Tests', () => {
   })
 
   describe('POST /login', () => {
-    let data = 
+    let data =
         {
           email: 'mike@yahoo.com',
           password: '111111333'
@@ -209,7 +208,7 @@ describe('User API Tests', () => {
   })
 
   describe('POST /login', () => {
-    let data = 
+    let data =
         {
           email: 'mike@com',
           password: '111111'
@@ -229,7 +228,7 @@ describe('User API Tests', () => {
   })
 
   describe('POST /login', () => {
-    let data = 
+    let data =
         {
           email: 'mike@service.com',
           password: '11111'
@@ -249,7 +248,7 @@ describe('User API Tests', () => {
   })
 
   describe('GET /logout', () => {
-    it('respond status 200 with user logged out ', (done) => {
+    it('respond status 200 with user logged out ', done => {
       ses
         .get('/logout')
         .set('Accept', 'application/json')
@@ -257,5 +256,4 @@ describe('User API Tests', () => {
         .expect(200, done)
     })
   })
-
 })

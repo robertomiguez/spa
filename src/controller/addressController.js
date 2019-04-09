@@ -19,7 +19,7 @@ exports.createAddress = async (req, res, next) => {
       number: req.body.number,
       id_postcode: req.body.idPostcode,
       id_user: req.session.userId,
-      expired: req.body.expired
+      expired: null
     })
     await address.save()
     res.status(201).json(address)

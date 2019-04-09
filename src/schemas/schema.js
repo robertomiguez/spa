@@ -11,3 +11,8 @@ exports.schemaLoginUser = {
   email: Joi.string().required().email({ minDomainAtoms: 2 }),
   password: Joi.string().required().min(6).max(20)
 }
+
+exports.schemaAddress = {
+  number: Joi.number().required().max(100000),
+  idPostcode: Joi.string().required()
+}

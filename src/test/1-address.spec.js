@@ -123,8 +123,7 @@ describe('Address API Tests', () => {
     let data =
             {
               number: '7800',
-              idPostcode: '5caa80252ad11c5860cf4b13',
-              expired: null
+              idPostcode: '5caa80252ad11c5860cf4b13'
             }
     it('Respond status 201 with address created.', done => {
       ses

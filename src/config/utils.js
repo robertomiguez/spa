@@ -24,7 +24,7 @@ const setHeaders = (app) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
     next()
   })
-}  
+}
 
 // Handler for internal server errors
 const errorHandler = (err, req, res, next) => {
@@ -32,11 +32,10 @@ const errorHandler = (err, req, res, next) => {
   logger.error(err.stack)
   res.status(err.status || 500).send({status: 500, message: err.message, type: 'internal'})
   next()
-}  
-
+}
 
 module.exports = {
   mongoConn,
   setHeaders,
   errorHandler
-}     
+}

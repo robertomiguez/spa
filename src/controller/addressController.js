@@ -6,7 +6,7 @@ exports.getPostcodes = async (req, res, next) => {
     if (postcodes.length) {
       res.json(postcodes)
     } else {
-      res.status(406).json('{ Postcode not found }')
+      res.status(406).json('Postcode not found')
     }
   } catch (error) {
     next(error)
@@ -35,7 +35,7 @@ exports.getUserAddressByUserID = async (req, res, next) => {
     if (address.length) {
       res.json(address)
     } else {
-      res.status(404).json('{Not Found}')
+      res.status(404).json('Address Not Found')
     }
   } catch (error) {
     next(error)
@@ -48,7 +48,7 @@ exports.getUserExpiredAddressByUserID = async (req, res, next) => {
     if (address.length) {
       res.json(address)
     } else {
-      res.status(404).json('{Not Found}')
+      res.status(404).json('Expired address Not Found')
     }
   } catch (error) {
     next(error)
@@ -64,7 +64,7 @@ exports.deleteAddress = async (req, res, next) => {
     if (address) {
       res.status(204).json(address)
     } else {
-      res.status(404).json('{Not Found}')
+      res.status(404).json('Address not Found')
     }
   } catch (error) {
     next(error)
@@ -80,7 +80,7 @@ exports.updateAddress = async (req, res, next) => {
     if (address) {
       res.status(201).json(address)
     } else {
-      res.status(404).json('{Not Found}')
+      res.status(404).json('Address Not Found')
     }
   } catch (error) {
     next(error)

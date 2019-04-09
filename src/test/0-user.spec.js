@@ -117,13 +117,35 @@ describe('User API Tests', () => {
               mobile: '07756988775',
               password: '222222'
             }
-    it('Respond status 200 with user created.', done => {
+    it('Respond status 201 with user created.', done => {
       req
         .post('/user')
         .send(data)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(201)
+        .end((err, res) => {
+          if (err) return done(err)
+          done()
+        })
+    })
+  })
+
+  describe('POST /user', () => {
+    let data =
+            {
+              name: 'Monica',
+              email: 'monica@gmail.com',
+              mobile: '07756988775',
+              password: '222222'
+            }
+    it('Respond status 406 with user unique key error.', done => {
+      req
+        .post('/user')
+        .send(data)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(406)
         .end((err, res) => {
           if (err) return done(err)
           done()

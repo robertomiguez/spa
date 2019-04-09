@@ -7,7 +7,8 @@ let usersSchema = new Schema({
   name: { type: String, required: true, max: 50 },
   email: { type: String, required: true, max: 50 },
   mobile: { type: String, required: true, max: 11 },
-  password: { type: String, required: true, max: 20 }
+  password: { type: String, required: true, max: 20 },
+  administrator: { type: Boolean, required: true }
 })
 
 usersSchema.pre('save', function (next) {

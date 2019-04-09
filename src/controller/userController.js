@@ -7,7 +7,8 @@ exports.createUser = async (req, res, next) => {
       name: req.body.name,
       email: req.body.email,
       mobile: req.body.mobile,
-      password: req.body.password
+      password: req.body.password,
+      administrator: false
     }
   )
   try {
@@ -35,6 +36,7 @@ exports.loginUser = async (req, res, next) => {
     let match = await bcrypt.compare(password, user.password)
     if (match) {
       req.session.userId = user._id
+      req.session.administrator = user.administrator
       res.json('user logged')
     } else {
       res.status(403).json('user or password invalid')
@@ -74,6 +76,18 @@ exports.IsUserLogged = (req, res, next) => {
       next()
     } else {
       res.status(403).json('user not logged')
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.IsAdministratorLogged = (req, res, next) => {
+  try {
+    if (req.session.userId && req.session.administrator) {
+      next()
+    } else {
+      res.status(403).json('administrator not logged')
     }
   } catch (error) {
     next(error)

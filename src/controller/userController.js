@@ -24,7 +24,7 @@ exports.loginUser = async (req, res, next) => {
     password = req.body.password
 
   try {
-    let user = await User.findOne({ email: email }, { id: 0 })
+    let user = await User.findOne({ email: email }, { })
     if (!user) {
       return res.status(403).json('{ user or password invalid }')
     }
@@ -45,6 +45,29 @@ exports.getUser = async (req, res, next) => {
     let user = await User.findById(req.session.userId, { _id: 0, __v: 0, password: 0 })
     if (user) {
       res.json(user)
+    } else {
+      res.status(403).json('{ user not logged }')
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.logoutUser = (req, res, next) => {
+  try {
+    if (req.session) {
+      req.session.destroy()
+      res.json('{ user logged out }')
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.IsUserLogged = (req, res, next) => {
+  try {
+    if (req.session.userId) {
+      next()
     } else {
       res.status(403).json('{ user not logged }')
     }

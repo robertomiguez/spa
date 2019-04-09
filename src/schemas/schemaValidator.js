@@ -7,7 +7,7 @@ exports.validCreateUser = (req, res, next) => {
   if (result.error) {
     return res.status(406).json(result.error.details[0])
   }
-  return next()
+  next()
 }
 
 exports.validLoginUser = (req, res, next) => {
@@ -15,6 +15,6 @@ exports.validLoginUser = (req, res, next) => {
   if (result.error) {
     return res.status(406).json(result.error.details[0])
   }
-  return next()
+  next()
 }
 

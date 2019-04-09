@@ -8,4 +8,7 @@ module.exports = app => {
 
   app.route('/login')
     .post(schemaValidator.validLoginUser, userController.loginUser)
+
+  app.route('/logout')
+    .get(userController.logoutUser)
 }

@@ -6,7 +6,7 @@ const express = require('express'),
   port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3001,
   ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
   userRoute = require('./src/route/userRoute'),
-  priceRoute = require('./src/route/priceRoute'),
+  addressRoute = require('./src/route/addressRoute'),
   { mongoConn, setHeaders, errorHandler } = require('./src/config/utils')
 
 app.use(session({
@@ -24,11 +24,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 setHeaders(app)
 
 // routes
-priceRoute(app)
+addressRoute(app)
 userRoute(app)
 app.route('*')
   .get((req, res) => {
-    res.status(404).json({ error: 'Sorry, url not found.' });
+    res.status(404).json({ error: 'Sorry, url not found.' })
   })
 
 // error handler middleware.

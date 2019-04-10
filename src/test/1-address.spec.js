@@ -83,7 +83,7 @@ describe('Address API Tests', () => {
     let data =
         {
           email: 'monica@gmail.com',
-          password: '222222'
+          password: 'monica'
         }
     it('Respond status 200 with login OK', done => {
       ses

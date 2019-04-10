@@ -46,9 +46,6 @@ exports.deletePrice = async (req, res, next) => {
 }
 
 exports.updatePrice = async (req, res, next) => {
-  if (!req.params.id.match(/^[0-9a-f]{24}$/)) {
-    return res.status(406).json('{Invalid Object Id}')
-  }
   try {
     let price = await models.Prices.findByIdAndUpdate(req.params.id, { $set: { duration: req.body.duration, value: req.body.value, id_treatment: req.body.idTreatment } }, { new: true })
     if (price) {

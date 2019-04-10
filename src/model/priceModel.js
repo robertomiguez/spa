@@ -26,5 +26,5 @@ let priceViewSchema = new Schema({
   description: { type: String, required: true, max: 200, min: 5 }
 })
 let PricesViews = mongoose.model('prices_views', priceViewSchema)
-  
+
 module.exports = { Treatments, Prices, PricesViews }

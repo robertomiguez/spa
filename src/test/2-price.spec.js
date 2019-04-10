@@ -35,7 +35,6 @@ describe('Price API Tests', () => {
     })
   })
 
-  
   describe('POST /price', () => {
     let data =
             {
@@ -87,7 +86,6 @@ describe('Price API Tests', () => {
     })
   })
 
-
   describe('GET /price', () => {
     it('respond status 200 with a list of prices ', done => {
       ses
@@ -96,7 +94,7 @@ describe('Price API Tests', () => {
         .expect('Content-Type', /json/)
         .expect(200, done)
     })
-  })  
+  })
 
   describe('GET /price/expired', () => {
     it('respond status 200 with a list of expired prices ', done => {
@@ -106,7 +104,7 @@ describe('Price API Tests', () => {
         .expect('Content-Type', /json/)
         .expect(200, done)
     })
-  })  
+  })
 
   describe('POST /price', () => {
     let data =
@@ -245,7 +243,7 @@ describe('Price API Tests', () => {
         })
     })
   })
-  
+
   describe('POST /price', () => {
     let data =
             {

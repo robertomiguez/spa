@@ -44,7 +44,7 @@ exports.deletePrice = async (req, res, next) => {
     next(error)
   }
 }
-  
+
 exports.updatePrice = async (req, res, next) => {
   if (!req.params.id.match(/^[0-9a-f]{24}$/)) {
     return res.status(406).json('{Invalid Object Id}')

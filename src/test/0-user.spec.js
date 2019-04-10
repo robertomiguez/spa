@@ -115,7 +115,7 @@ describe('User API Tests', () => {
               name: 'Monica',
               email: 'monica@gmail.com',
               mobile: '07756988775',
-              password: '222222'
+              password: 'monica'
             }
     it('Respond status 201 with user created.', done => {
       req
@@ -167,7 +167,7 @@ describe('User API Tests', () => {
     let data =
         {
           email: 'monica@gmail.com',
-          password: '222222'
+          password: 'monica'
         }
     it('Respond status 200 with login OK', done => {
       ses

@@ -56,9 +56,6 @@ exports.getUserExpiredAddressByUserID = async (req, res, next) => {
 }
 // logical deletion
 exports.deleteAddress = async (req, res, next) => {
-  // if (!req.params.id.match(/^[0-9a-f]{24}$/)) {
-  //  return res.status(406).json('{Invalid Object Id}')
-  // }
   try {
     let address = await models.Addresses.findOneAndUpdate({ 'id_user': req.session.userId }, { $set: { expired: new Date() } }, { new: true })
     if (address) {
@@ -72,9 +69,6 @@ exports.deleteAddress = async (req, res, next) => {
 }
 
 exports.updateAddress = async (req, res, next) => {
-  // if (!req.params.id.match(/^[0-9a-f]{24}$/)) {
-  //  return res.status(406).json('{Invalid Object Id}')
-  // }
   try {
     let address = await models.Addresses.findOneAndUpdate({ 'id_user': req.session.userId }, { $set: { number: req.body.number, id_postcode: req.body.idPostcode } }, { new: true })
     if (address) {

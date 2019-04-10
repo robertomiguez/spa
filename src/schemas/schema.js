@@ -16,3 +16,9 @@ exports.schemaAddress = {
   number: Joi.number().required().max(100000),
   idPostcode: Joi.string().required()
 }
+
+exports.schemaPrice = {
+  duration: Joi.number().required().max(2).min(1),
+  value: Joi.number().required().min(0),
+  idTreatment: Joi.string().required()
+}

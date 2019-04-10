@@ -7,6 +7,7 @@ const express = require('express'),
   ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
   userRoute = require('./src/route/userRoute'),
   addressRoute = require('./src/route/addressRoute'),
+  priceRoute = require('./src/route/priceRoute'),
   { mongoConn, setHeaders, errorHandler } = require('./src/config/utils')
 
 app.use(session({
@@ -24,8 +25,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 setHeaders(app)
 
 // routes
-addressRoute(app)
 userRoute(app)
+addressRoute(app)
+priceRoute(app)
 app.route('*')
   .get((req, res) => {
     res.status(404).json({ error: 'Sorry, url not found.' })

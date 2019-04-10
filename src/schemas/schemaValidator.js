@@ -26,3 +26,10 @@ exports.validAddress = (req, res, next) => {
   next()
 }
 
+exports.validPrice = (req, res, next) => {
+  const result = Joi.validate(req.body, schema.schemaPrice)
+  if (result.error) {
+    return res.status(406).json(result.error.details[0])
+  }
+  next()
+}

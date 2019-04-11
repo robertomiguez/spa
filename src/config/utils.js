@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
   logger = require('./winston')
 
-const mongoConn = () =>  {
+const mongoConn = () => {
   let mongoURL
   if (process.env.MONGODB_SERVER_HOST) {
     mongoURL = `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_SERVER_HOST}:27017/${process.env.MONGODB_DATABASE}`
@@ -34,8 +34,11 @@ const errorHandler = (err, req, res, next) => {
   next()
 }
 
+const randomNumber = () => Math.floor(Math.random() * (10000000 - 1 + 1)) + 1
+
 module.exports = {
   mongoConn,
   setHeaders,
-  errorHandler
+  errorHandler,
+  randomNumber
 }

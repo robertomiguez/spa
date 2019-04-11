@@ -2,9 +2,10 @@ const // request = require('supertest'),
   session = require('supertest-session'),
   app = require('../server'),
   // req = request(app),
-  ses = session(app)
-let idPrice,
-  partialName = Math.floor(Math.random() * (10000 - 1 + 1)) + 1
+  ses = session(app),
+  { randomNumber } = require('../src/config/utils'),
+  partialName = randomNumber()
+let idPrice
 
 describe('Price API Tests', () => {
   describe('GET /treatment', () => {

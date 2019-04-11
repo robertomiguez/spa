@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server",
     "dev": "nodemon server",
-    "test": "mocha 'src/test/*.spec.js' --exit",
+    "test": "mocha 'src/test/*appointment.spec.js' --exit",
     "lint": "eslint server.js src/*"
   },
   "author": "Roberto Miguez De Freitas",

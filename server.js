@@ -8,6 +8,7 @@ const express = require('express'),
   userRoute = require('./src/route/userRoute'),
   addressRoute = require('./src/route/addressRoute'),
   priceRoute = require('./src/route/priceRoute'),
+  appointmentRoute = require('./src/route/appointmentRoute'),
   { mongoConn, setHeaders, errorHandler } = require('./src/config/utils')
 
 app.use(session({
@@ -28,6 +29,7 @@ setHeaders(app)
 userRoute(app)
 addressRoute(app)
 priceRoute(app)
+appointmentRoute(app)
 app.route('*')
   .get((req, res) => {
     res.status(404).json({ error: 'Sorry, url not found.' })

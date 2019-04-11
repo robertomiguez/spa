@@ -3,6 +3,7 @@ const request = require('supertest'),
   app = require('../../server'),
   req = request(app),
   ses = session(app)
+let partialName = Math.floor(Math.random() * (1000 - 1 + 1)) + 1
 
 describe('User API Tests', () => {
   describe('POST /user', () => {
@@ -24,10 +25,10 @@ describe('User API Tests', () => {
   describe('POST /user', () => {
     let data =
         {
-          name: 'Mi',
-          email: 'mike@gmail.com',
-          mobile: '07770888055',
-          password: '111111'
+          name: 'Us',
+          email: 'us@mymail.com',
+          mobile: '07770777055',
+          password: 'user000'
         }
     it('Respond status 406 with an invalid name', done => {
       req
@@ -46,10 +47,10 @@ describe('User API Tests', () => {
   describe('POST /user', () => {
     let data =
         {
-          name: 'Mike',
-          email: 'mike@com',
+          name: 'User',
+          email: 'user@com',
           mobile: '07770888055',
-          password: '111111'
+          password: 'user000'
         }
     it('Respond status 406 with an invalid email', done => {
       req
@@ -68,10 +69,10 @@ describe('User API Tests', () => {
   describe('POST /user', () => {
     let data =
         {
-          name: 'Mike',
-          email: 'mike@service.com',
+          name: 'User',
+          email: 'user@mymail.com',
           mobile: '0777',
-          password: '111111'
+          password: 'user000'
         }
     it('Respond status 406 with an invalid mobile', done => {
       req
@@ -90,8 +91,8 @@ describe('User API Tests', () => {
   describe('POST /user', () => {
     let data =
         {
-          name: 'Mike',
-          email: 'mike@service.com',
+          name: 'User',
+          email: 'user@myemail.com',
           mobile: '07770788055',
           password: '11111'
         }
@@ -112,10 +113,10 @@ describe('User API Tests', () => {
   describe('POST /user', () => {
     let data =
             {
-              name: 'Monica',
-              email: 'monica@gmail.com',
-              mobile: '07756988775',
-              password: 'monica'
+              name: `user${partialName}`,
+              email: `user${partialName}@mymail.com`,
+              mobile: '07770777123',
+              password: 'pwd000'
             }
     it('Respond status 201 with user created.', done => {
       req
@@ -134,10 +135,10 @@ describe('User API Tests', () => {
   describe('POST /user', () => {
     let data =
             {
-              name: 'Monica',
-              email: 'monica@gmail.com',
-              mobile: '07756988775',
-              password: '222222'
+              name: `user${partialName}`,
+              email: `user${partialName}@mymail.com`,
+              mobile: '07770777123',
+              password: 'pwd000'
             }
     it('Respond status 406 with user unique key error.', done => {
       req
@@ -166,8 +167,8 @@ describe('User API Tests', () => {
   describe('POST /login', () => {
     let data =
         {
-          email: 'monica@gmail.com',
-          password: 'monica'
+          email: `user${partialName}@mymail.com`,
+          password: 'pwd000'
         }
     it('Respond status 200 with login OK', done => {
       ses
@@ -212,7 +213,7 @@ describe('User API Tests', () => {
   describe('POST /login', () => {
     let data =
         {
-          email: 'mike@yahoo.com',
+          email: 'userX@myemail.com',
           password: '111111333'
         }
     it('Respond status 403 with an error user or password invalid.', done => {
@@ -232,7 +233,7 @@ describe('User API Tests', () => {
   describe('POST /login', () => {
     let data =
         {
-          email: 'mike@com',
+          email: 'user@com',
           password: '111111'
         }
     it('Respond status 406 with an invalid email', done => {
@@ -252,7 +253,7 @@ describe('User API Tests', () => {
   describe('POST /login', () => {
     let data =
         {
-          email: 'mike@service.com',
+          email: 'user@myemail.com',
           password: '11111'
         }
     it('Respond status 406 with an invalid password', done => {

@@ -3,7 +3,8 @@ const // request = require('supertest'),
   app = require('../../server'),
   // req = request(app),
   ses = session(app)
-let idPrice
+let idPrice,
+  partialName = Math.floor(Math.random() * (1000 - 1 + 1)) + 1
 
 describe('Price API Tests', () => {
   describe('GET /treatment', () => {
@@ -57,11 +58,33 @@ describe('Price API Tests', () => {
     })
   })
 
+  describe('POST /user', () => {
+    let data =
+            {
+              name: `user${partialName}`,
+              email: `user${partialName}@mymail.com`,
+              mobile: '07770777123',
+              password: 'pwd000'
+            }
+    it('Respond status 201 with user created.', done => {
+      ses
+        .post('/user')
+        .send(data)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(201)
+        .end((err, res) => {
+          if (err) return done(err)
+          done()
+        })
+    })
+  })
+
   describe('POST /login', () => {
     let data =
         {
-          email: 'monica@gmail.com',
-          password: 'monica'
+          email: `user${partialName}@mymail.com`,
+          password: 'pwd000'
         }
     it('Respond status 200 with login OK', done => {
       ses
@@ -128,7 +151,7 @@ describe('Price API Tests', () => {
     })
   })
 
-  describe('PUT /price/5cad0a4ab813147af2fd7d38', () => {
+  describe('PUT /price/:idPrice', () => {
     let data =
             {
               duration: '1',
@@ -137,7 +160,7 @@ describe('Price API Tests', () => {
             }
     it('Respond status 403 with administrator not logged.', done => {
       ses
-        .put('/price/5cad0a4ab813147af2fd7d38')
+        .put(`/price/${idPrice}`)
         .send(data)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -149,10 +172,10 @@ describe('Price API Tests', () => {
     })
   })
 
-  describe('DELETE /price/5cad0a4ab813147af2fd7d38', () => {
+  describe('DELETE /price/:idPrice', () => {
     it('Respond status 403 with administrator not logged.', done => {
       ses
-        .delete('/price/5cad0a4ab813147af2fd7d38')
+        .delete(`/price/${idPrice}`)
         .set('Accept', 'application/json')
         .expect(403)
         .end((err, res) => {

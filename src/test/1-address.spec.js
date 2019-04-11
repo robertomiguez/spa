@@ -3,6 +3,7 @@ const // request = require('supertest'),
   app = require('../../server'),
   // req = request(app),
   ses = session(app)
+let partialName = Math.floor(Math.random() * (1000 - 1 + 1)) + 1
 
 describe('Address API Tests', () => {
   describe('GET /postcode', () => {
@@ -79,11 +80,33 @@ describe('Address API Tests', () => {
     })
   })
 
+  describe('POST /user', () => {
+    let data =
+            {
+              name: `user${partialName}`,
+              email: `user${partialName}@mymail.com`,
+              mobile: '07770777123',
+              password: 'pwd000'
+            }
+    it('Respond status 201 with user created.', done => {
+      ses
+        .post('/user')
+        .send(data)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(201)
+        .end((err, res) => {
+          if (err) return done(err)
+          done()
+        })
+    })
+  })
+
   describe('POST /login', () => {
     let data =
         {
-          email: 'monica@gmail.com',
-          password: 'monica'
+          email: `user${partialName}@mymail.com`,
+          password: 'pwd000'
         }
     it('Respond status 200 with login OK', done => {
       ses

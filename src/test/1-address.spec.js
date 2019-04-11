@@ -3,7 +3,8 @@ const // request = require('supertest'),
   app = require('../../server'),
   // req = request(app),
   ses = session(app)
-let partialName = Math.floor(Math.random() * (1000 - 1 + 1)) + 1
+let idAddress,
+  partialName = Math.floor(Math.random() * (1000 - 1 + 1)) + 1
 
 describe('Address API Tests', () => {
   describe('GET /postcode', () => {
@@ -47,7 +48,7 @@ describe('Address API Tests', () => {
     })
   })
 
-  describe('PUT /address', () => {
+  describe('PUT /address/:idAddress', () => {
     let data =
             {
               number: '333',
@@ -55,7 +56,7 @@ describe('Address API Tests', () => {
             }
     it('Respond status 403 with user not logged.', done => {
       ses
-        .put('/address')
+        .put(`/address/${idAddress}`)
         .send(data)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -67,10 +68,10 @@ describe('Address API Tests', () => {
     })
   })
 
-  describe(`DELETE /address}`, () => {
+  describe(`DELETE /address/:idAddress`, () => {
     it('respond status 403 with user not logged ', done => {
       ses
-        .delete(`/address`)
+        .delete(`/address/${idAddress}`)
         .set('Accept', 'application/json')
         .expect(403)
         .end((err, res) => {
@@ -157,6 +158,7 @@ describe('Address API Tests', () => {
         .expect(201)
         .end((err, res) => {
           if (err) return done(err)
+          idAddress = JSON.parse(res.text)._id
           done()
         })
     })
@@ -172,7 +174,7 @@ describe('Address API Tests', () => {
     })
   })
 
-  describe('PUT /address', () => {
+  describe('PUT /address/:idAddress', () => {
     let data =
             {
               number: '9000',
@@ -180,7 +182,7 @@ describe('Address API Tests', () => {
             }
     it('Respond status 201 with address updated.', done => {
       ses
-        .put('/address')
+        .put(`/address/${idAddress}`)
         .send(data)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -192,10 +194,10 @@ describe('Address API Tests', () => {
     })
   })
 
-  describe(`DELETE /address}`, () => {
+  describe(`DELETE /address/:idAddress`, () => {
     it('respond status 204 logical address delete', done => {
       ses
-        .delete(`/address`)
+        .delete(`/address/${idAddress}`)
         .set('Accept', 'application/json')
         .expect(204)
         .end((err, res) => {

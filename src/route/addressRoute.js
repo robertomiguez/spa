@@ -9,6 +9,8 @@ module.exports = app => {
   app.route('/address')
     .get(userController.IsUserLogged, addressController.getUserAddressByUserID)
     .post(userController.IsUserLogged, schemaValidator.validAddress, addressController.createAddress)
+
+  app.route('/address/:id')
     .put(userController.IsUserLogged, schemaValidator.validAddress, addressController.updateAddress)
     .delete(userController.IsUserLogged, addressController.deleteAddress) // logical
 

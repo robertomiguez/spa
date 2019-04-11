@@ -3,6 +3,7 @@ const // request = require('supertest'),
   app = require('../../server'),
   // req = request(app),
   ses = session(app)
+let idPrice
 
 describe('Price API Tests', () => {
   describe('GET /treatment', () => {
@@ -260,12 +261,13 @@ describe('Price API Tests', () => {
         .expect(201)
         .end((err, res) => {
           if (err) return done(err)
+          idPrice = JSON.parse(res.text)._id
           done()
         })
     })
   })
 
-  describe('PUT /price/5cad0a4ab813147af2fd7d38', () => {
+  describe('PUT /price/:idPrice', () => {
     let data =
         {
           duration: '1',
@@ -274,7 +276,7 @@ describe('Price API Tests', () => {
         }
     it('Respond status 201 with price updated.', done => {
       ses
-        .put('/price/5cad0a4ab813147af2fd7d38')
+        .put(`/price/${idPrice}`)
         .send(data)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
@@ -286,10 +288,10 @@ describe('Price API Tests', () => {
     })
   })
 
-  describe('DELETE /price/5cad0a4ab813147af2fd7d38', () => {
+  describe('DELETE /price/:idPrice', () => {
     it('respond status 204 logical address delete', done => {
       ses
-        .delete('/price/5cad0a4ab813147af2fd7d38')
+        .delete(`/price/${idPrice}`)
         .set('Accept', 'application/json')
         .expect(204)
         .end((err, res) => {

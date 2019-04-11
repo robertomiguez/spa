@@ -209,7 +209,6 @@ describe('Appointment API Tests', () => {
         .end((err, res) => {
           if (err) return done(err)
           idAppointment = JSON.parse(res.text)._id
-          console.log(idAppointment)
           done()
         })
     })

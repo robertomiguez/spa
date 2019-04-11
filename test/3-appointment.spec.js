@@ -1,10 +1,10 @@
 const // request = require('supertest'),
   session = require('supertest-session'),
-  app = require('../../server'),
+  app = require('../server'),
   // req = request(app),
   ses = session(app)
 let idAppointment,
-  partialName = Math.floor(Math.random() * (1000 - 1 + 1)) + 1
+  partialName = Math.floor(Math.random() * (10000 - 1 + 1)) + 1
 
 describe('Appointment API Tests', () => {
   describe('POST /appointment', () => {

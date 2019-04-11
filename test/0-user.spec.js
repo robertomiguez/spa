@@ -1,9 +1,9 @@
 const request = require('supertest'),
   session = require('supertest-session'),
-  app = require('../../server'),
+  app = require('../server'),
   req = request(app),
   ses = session(app)
-let partialName = Math.floor(Math.random() * (1000 - 1 + 1)) + 1
+let partialName = Math.floor(Math.random() * (10000 - 1 + 1)) + 1
 
 describe('User API Tests', () => {
   describe('POST /user', () => {

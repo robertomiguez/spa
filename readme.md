@@ -1,4 +1,4 @@
-# Weather API
+# SPA API
 
 ## Install
 
@@ -13,6 +13,8 @@
 ## Test
 
     $ npm run test
+
+![GitHub Logo](/docs/datamodel-spa.png)    
 
 **Create an user**
 ----
@@ -31,7 +33,7 @@ POST
 required:
 
 name=[String] - Constraints min(0)\
-email=[String] - Constraints email format
+email=[String] - Constraints email format\
 mobile=[String] - Constraints lenght(11)\
 password=[String] - Constraints min(6)
 
@@ -52,7 +54,7 @@ password=[String] - Constraints min(6)
 
 **Login**
 ----
-Returns json data with an user.
+Returns json data with an user if login was successfull.
 
 * **URL**
 
@@ -66,7 +68,7 @@ POST
 
 required:
 
-email=[String] - Constraints email format
+email=[String] - Constraints email format /
 password=[String] - Constraints min(6)
 
 * **Success Response:**
@@ -91,7 +93,6 @@ GET
 
 * **Parameters**
 
-none
 
 * **Success Response:**
 
@@ -108,7 +109,7 @@ none
 
 **Logout an user**
 ----
-Returns a logout message.
+logout an user.
 
 * **URL**
 
@@ -120,7 +121,6 @@ GET
 
 * **Parameters**
 
-none
 
 * **Success Response:**
 
@@ -144,7 +144,6 @@ GET
 
 * **Parameters**
 
-none
 
 * **Success Response:**
 
@@ -157,7 +156,6 @@ none
         "postcode": "E7",
         "attend": true
     },
-    ...
     {
         "_id": "5caa80432ad11c5860cf4b21",
         "postcode": "E15",
@@ -213,7 +211,6 @@ GET
 
 * **Parameters**
 
-none
 
 * **Success Response:**
 
@@ -248,7 +245,6 @@ GET
 
 * **Parameters**
 
-none
 
 * **Success Response:**
 
@@ -315,9 +311,6 @@ DELETE
 
 * **Parameters**
 
-required:
-
-none
 
 * **Success Response:**
 
@@ -328,7 +321,7 @@ none
 
 **Get a list of treatments**
 ----
-Returns json data with a treatments.
+Returns json data with treatments.
 
 * **URL**
 
@@ -340,7 +333,6 @@ GET
 
 * **Parameters**
 
-none
 
 * **Success Response:**
 
@@ -380,7 +372,7 @@ POST
 required:
 
 duration=[String] - Constraints max(2) min(1)\
-value=[String] - Constraints min(0/)
+value=[String] - Constraints min(0/)\
 idTreatment=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
@@ -399,7 +391,7 @@ idTreatment=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 **Get a list of prices**
 ----
-Returns json data with a prices.
+Returns json data with prices.
 
 * **URL**
 
@@ -411,7 +403,6 @@ GET
 
 * **Parameters**
 
-none
 
 * **Success Response:**
 
@@ -439,7 +430,7 @@ none
 ```
 **Get a list of expired prices**
 ----
-Returns json data with a expired prices.
+Returns json data with expired prices.
 
 * **URL**
 
@@ -451,7 +442,6 @@ GET
 
 * **Parameters**
 
-none
 
 * **Success Response:**
 
@@ -495,7 +485,7 @@ PUT
 optional:
 
 duration=[String] - Constraints max(2) min(1)\
-value=[String] - Constraints min(0/)
+value=[String] - Constraints min(0/)\
 idTreatment=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
@@ -525,7 +515,6 @@ DELETE
 
 * **Parameters**
 
-none
 
 * **Success Response:**
 
@@ -551,8 +540,8 @@ POST
 required:
 
 datetime=[String] - Constraints ISO\
-discount=[String] - Constraints min(0)
-idPrice=[String] - Constraints regex(/^[0-9a-f]{24}$/)
+discount=[String] - Constraints min(0)\
+idPrice=[String] - Constraints regex(/^[0-9a-f]{24}$/)\
 idAddress=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
@@ -584,9 +573,6 @@ GET
 
 * **Parameters**
 
-required:
-
-none
 
 * **Success Response:**
 
@@ -625,8 +611,8 @@ PUT
 required:
 
 datetime=[String] - Constraints ISO\
-discount=[String] - Constraints min(0)
-idPrice=[String] - Constraints regex(/^[0-9a-f]{24}$/)
+discount=[String] - Constraints min(0)\
+idPrice=[String] - Constraints regex(/^[0-9a-f]{24}$/)\
 idAddress=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
@@ -658,9 +644,6 @@ DELETE
 
 * **Parameters**
 
-required:
-
-none
 
 * **Success Response:**
 

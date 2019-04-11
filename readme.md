@@ -14,7 +14,6 @@
 
     $ npm run test
 
-![GitHub Logo](/docs/datamodel-spa.png)    
 
 **Create an user**
 ----
@@ -650,4 +649,228 @@ DELETE
   * **Code:** 200 <br />
     **Content:** 
 ```json    
+```
+
+## DataModel - MongoDB
+
+![GitHub Logo](/docs/datamodel-spa.png)    
+
+## Views - MongoDB
+----
+View addresses_views
+
+```json    
+{
+	"name" : "addresses_views",
+	"type" : "view",
+	"options" : {
+		"viewOn" : "addresses",
+		"pipeline" : [
+			{
+				"$match" : {
+					
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "postcodes",
+					"localField" : "id_postcode",
+					"foreignField" : "_id",
+					"as" : "fromPostcodes"
+				}
+			},
+			{
+				"$replaceRoot" : {
+					"newRoot" : {
+						"$mergeObjects" : [
+							{
+								"$arrayElemAt" : [
+									"$fromPostcodes",
+									0
+								]
+							},
+							"$$ROOT"
+						]
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "users",
+					"localField" : "id_user",
+					"foreignField" : "_id",
+					"as" : "fromUsers"
+				}
+			},
+			{
+				"$replaceRoot" : {
+					"newRoot" : {
+						"$mergeObjects" : [
+							{
+								"$arrayElemAt" : [
+									"$fromUsers",
+									0
+								]
+							},
+							"$$ROOT"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"_id" : 1,
+					"id_user" : 1,
+					"name" : 1,
+					"email" : 1,
+					"mobile" : 1,
+					"number" : 1,
+					"postcode" : 1,
+					"expired" : 1
+				}
+			}
+		]
+	},
+	"info" : {
+		"readOnly" : true
+	}
+}
+```
+----
+View prices_views
+
+```json    
+{
+	"name" : "prices_views",
+	"type" : "view",
+	"options" : {
+		"viewOn" : "prices",
+		"pipeline" : [
+			{
+				"$match" : {
+					
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "treatments",
+					"localField" : "id_treatment",
+					"foreignField" : "_id",
+					"as" : "fromTreatments"
+				}
+			},
+			{
+				"$replaceRoot" : {
+					"newRoot" : {
+						"$mergeObjects" : [
+							{
+								"$arrayElemAt" : [
+									"$fromTreatments",
+									0
+								]
+							},
+							"$$ROOT"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"_id" : 1,
+					"duration" : 1,
+					"value" : 1,
+					"expired" : 1,
+					"name" : 1,
+					"description" : 1
+				}
+			}
+		]
+	},
+	"info" : {
+		"readOnly" : true
+	}
+}
+```
+----
+View appointments_views
+
+```json    
+{
+	"name" : "appointments_views",
+	"type" : "view",
+	"options" : {
+		"viewOn" : "appointments",
+		"pipeline" : [
+			{
+				"$match" : {
+					
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "prices_views",
+					"localField" : "id_price",
+					"foreignField" : "_id",
+					"as" : "fromPrices"
+				}
+			},
+			{
+				"$replaceRoot" : {
+					"newRoot" : {
+						"$mergeObjects" : [
+							{
+								"$arrayElemAt" : [
+									"$fromPrices",
+									0
+								]
+							},
+							"$$ROOT"
+						]
+					}
+				}
+			},
+			{
+				"$lookup" : {
+					"from" : "addresses_views",
+					"localField" : "id_address",
+					"foreignField" : "_id",
+					"as" : "fromAddresses_views"
+				}
+			},
+			{
+				"$replaceRoot" : {
+					"newRoot" : {
+						"$mergeObjects" : [
+							{
+								"$arrayElemAt" : [
+									"$fromAddresses_views",
+									0
+								]
+							},
+							"$$ROOT"
+						]
+					}
+				}
+			},
+			{
+				"$project" : {
+					"_id" : 1,
+					"datetime" : 1,
+					"discount" : 1,
+					"id_user" : 1,
+					"number" : 1,
+					"postcode" : 1,
+					"duration" : 1,
+					"value" : 1,
+					"expired" : 1,
+					"name" : 1,
+					"description" : 1
+				}
+			}
+		]
+	},
+	"info" : {
+		"readOnly" : true
+	}
+}
 ```

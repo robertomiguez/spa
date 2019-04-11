@@ -1,4 +1,4 @@
-# SPA API
+# Beauty Clinic Management API
 
 ## Install
 
@@ -38,7 +38,7 @@ password=[String] - Constraints min(6)
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** 
 ```json    
 {
@@ -67,7 +67,7 @@ POST
 
 required:
 
-email=[String] - Constraints email format /
+email=[String] - Constraints email format \
 password=[String] - Constraints min(6)
 
 * **Success Response:**
@@ -129,9 +129,9 @@ GET
 "user logged out"
 ```
 
-**Get a list of Postcodes**
+**Get a list of postcodes**
 ----
-Returns json data with a postcodes.
+Returns json data with postcodes.
 
 * **URL**
 
@@ -184,7 +184,7 @@ idPotocode=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** 
 ```json    
 {
@@ -284,7 +284,7 @@ idPostcode=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** 
 ```json    
 {
@@ -313,7 +313,7 @@ DELETE
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 204 <br />
     **Content:** 
 ```json    
 ```
@@ -376,7 +376,7 @@ idTreatment=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** 
 ```json    
 {
@@ -489,7 +489,7 @@ idTreatment=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** 
 ```json    
 {
@@ -517,7 +517,7 @@ DELETE
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 204 <br />
     **Content:** 
 ```json    
 ```
@@ -545,7 +545,7 @@ idAddress=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** 
 ```json    
 {
@@ -616,7 +616,7 @@ idAddress=[String] - Constraints regex(/^[0-9a-f]{24}$/)
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 201 <br />
     **Content:** 
 ```json    
 {
@@ -646,7 +646,7 @@ DELETE
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
+  * **Code:** 204 <br />
     **Content:** 
 ```json    
 ```

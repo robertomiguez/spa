@@ -4,3 +4,4 @@ package-lock.json
 silly.log
 error.log
 info.log
+.nyc_output

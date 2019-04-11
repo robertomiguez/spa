@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server",
     "dev": "nodemon server",
-    "test": "mocha 'src/test/*.spec.js' --exit",
+    "test": "mocha 'test/*.spec.js' --exit",
+    "test-coverage": "nyc --cache mocha test/*.spec.js --exit",
     "lint": "eslint server.js src/*"
   },
   "author": "Roberto Miguez De Freitas",
@@ -28,6 +29,7 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
     "supertest": "^4.0.2",
     "supertest-session": "^4.0.0"
   }
